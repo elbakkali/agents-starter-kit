@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: TruffleHog (verified secrets)
-        uses: trufflesecurity/trufflehog@v3.88.23
+        uses: trufflesecurity/trufflehog@v3.95.9
         with:
           extra_args: --only-verified
 
