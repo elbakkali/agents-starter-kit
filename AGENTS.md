@@ -14,6 +14,8 @@ Cross-tool instructions for AI coding agents in this repository.
 | `docs/product/` | Markdown | Product docs — features, flows, overview |
 | `scripts/` | Python / Bash | Devkit menu and repeatable task scripts |
 
+**New project from this kit:** [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
+
 Nested `AGENTS.md` in `api/`, `web/`, and `app/` hold framework-specific commands.
 The nearest file wins; chat prompts override everything.
 

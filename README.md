@@ -20,6 +20,8 @@ Token-efficient instructions for AI coding agents (Cursor, Claude Code, Copilot,
 
 ## Quick start
 
+**Starting a new project → [docs/PLAYBOOK.md](docs/PLAYBOOK.md)** (clone → bootstrap → identity → ship)
+
 **New project (day 0):** follow [bootstrap guide](docs/technical/bootstrap.md) or run:
 
 ```bash
@@ -101,6 +103,7 @@ chmod +x scripts/install.sh
 
 ## Key guides
 
+- [**New project playbook**](docs/PLAYBOOK.md) — start here for a fresh repo
 - [Bootstrap (day 0)](docs/technical/bootstrap.md)
 - [Local setup from scratch](docs/technical/setup-local.md)
 - [Production setup from scratch](docs/technical/setup-production.md)

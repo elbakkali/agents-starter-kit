@@ -6,6 +6,7 @@ Engineering docs for developers and AI agents. Keep these **up to date** with ev
 
 | Document | Purpose | Update when |
 |----------|---------|-------------|
+| [../PLAYBOOK.md](../PLAYBOOK.md) | **Start a new project** — clone through shipping | Playbook workflow or onboarding steps change |
 | [bootstrap.md](bootstrap.md) | Day-0 clone → scaffold → first green feature_review | Bootstrap script, env templates, scaffold flow |
 | [setup-local.md](setup-local.md) | Run the project locally (Docker + native) | Tooling, env vars, or service topology changes |
 | [setup-production.md](setup-production.md) | Deploy from scratch to production | Infra, CI/CD, or runtime config changes |
