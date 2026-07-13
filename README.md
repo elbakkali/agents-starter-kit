@@ -20,6 +20,14 @@ Token-efficient instructions for AI coding agents (Cursor, Claude Code, Copilot,
 
 ## Quick start
 
+**New project (day 0):** follow [bootstrap guide](docs/technical/bootstrap.md) or run:
+
+```bash
+python3 -m scripts.tasks.bootstrap_project
+```
+
+**Existing scaffold:**
+
 ```bash
 cp .env.docker.example .env
 docker compose up -d --build
@@ -93,6 +101,7 @@ chmod +x scripts/install.sh
 
 ## Key guides
 
+- [Bootstrap (day 0)](docs/technical/bootstrap.md)
 - [Local setup from scratch](docs/technical/setup-local.md)
 - [Production setup from scratch](docs/technical/setup-production.md)
 - [Technical docs index](docs/technical/README.md)
@@ -110,4 +119,4 @@ Multi-editor setup, sync workflow, and generated files: [`docs/technical/agent-a
 
 ## License
 
-Use freely. Customize without attribution.
+[MIT](LICENSE) — Agents Starter Kit contributors. Customize freely.

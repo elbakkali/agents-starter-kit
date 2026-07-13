@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from scripts.lib.runner import ROOT, docker_compose, require_docker, run
+from scripts.lib.runner import ROOT, docker_compose, require_docker, run, web_is_kit_stub
 
 
 def _native() -> None:
@@ -16,7 +16,10 @@ def _native() -> None:
     elif (api / "composer.json").exists():
         print("Skip API lint: run composer install first")
     if (web / "package.json").exists():
-        run(["npm", "run", "lint"], cwd=web)
+        if web_is_kit_stub():
+            print("Skip web lint: package.json is kit stub (run nuxi init).")
+        else:
+            run(["npm", "run", "lint"], cwd=web)
     else:
         print("Skip web lint: no package.json in web/")
 
@@ -28,7 +31,10 @@ def _docker() -> None:
     else:
         print("Skip API lint: no composer.json in api/")
     if (ROOT / "web" / "package.json").exists():
-        docker_compose("exec", "-T", "web", "npm", "run", "lint")
+        if web_is_kit_stub():
+            print("Skip web lint: package.json is kit stub (run nuxi init).")
+        else:
+            docker_compose("exec", "-T", "web", "npm", "run", "lint")
     else:
         print("Skip web lint: no package.json in web/")
 

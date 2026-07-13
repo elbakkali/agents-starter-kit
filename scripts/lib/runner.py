@@ -35,3 +35,11 @@ def require_docker() -> None:
     except (subprocess.CalledProcessError, FileNotFoundError):
         print("Docker is not running or not installed.", file=sys.stderr)
         sys.exit(1)
+
+
+def web_is_kit_stub() -> bool:
+    """True when web/package.json is the pre-scaffold starter kit stub."""
+    pkg = ROOT / "web" / "package.json"
+    if not pkg.exists():
+        return False
+    return "starter-kit-stub" in pkg.read_text(encoding="utf-8")

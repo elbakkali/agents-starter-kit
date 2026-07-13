@@ -27,7 +27,8 @@ Do not mix: API endpoints belong in technical; user journeys belong in product.
 | Known debt | `tech-debt.md` |
 | API contract / OpenAPI | `api-contract.md` |
 | ADR | `decisions/` (new ADR per significant choice) |
-| Session handoff | `HANDOFF.md.template` → local `HANDOFF.md` (gitignored) |
+| Session handoff | `HANDOFF.md.template` → local `docs/technical/HANDOFF.md` (gitignored; required after multi-file sessions) |
+| Bootstrap | `bootstrap.md` |
 | MCP (optional) | `mcp-setup.md` |
 
 ## Quality rules
@@ -36,6 +37,7 @@ Do not mix: API endpoints belong in technical; user journeys belong in product.
 - Remove docs for deleted features in the same PR.
 - Link between docs; avoid duplicating content across files.
 - Run `python3 -m scripts.tasks.docs_check` before finishing doc changes.
+- CI and feature review run `python3 -m scripts.tasks.check_doc_updates` when `api/`, `web/`, or `app/` code changes.
 
 ## Do not
 

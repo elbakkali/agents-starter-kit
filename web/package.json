@@ -1,0 +1,11 @@
+{
+  "name": "starter-kit-stub",
+  "private": true,
+  "description": "Kit stub — scaffold with: npx nuxi@latest init web (see docs/technical/bootstrap.md)",
+  "scripts": {
+    "dev": "echo 'Run nuxi init first — see docs/technical/bootstrap.md' && exit 1",
+    "build": "echo 'Run nuxi init first' && exit 1",
+    "lint": "echo 'Run nuxi init first' && exit 1",
+    "test": "echo 'Run nuxi init first' && exit 1"
+  }
+}

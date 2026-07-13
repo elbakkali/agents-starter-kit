@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -22,6 +24,9 @@ jobs:
 
       - name: Documentation structure
         run: python3 -m scripts.tasks.docs_check
+
+      - name: Doc updates for app code changes
+        run: python3 -m scripts.tasks.check_doc_updates
 
       - name: Orphan scan
         run: python3 -m scripts.tasks.check_orphans
@@ -31,6 +36,9 @@ jobs:
 
       - name: AGENTS.md validation
         run: python3 -m scripts.tasks.validate_agents
+
+      - name: AGENTS.md command validation
+        run: python3 -m scripts.tasks.validate_agents_commands
 
   security:
     name: Security check

@@ -29,6 +29,7 @@ CATEGORIES: dict[str, list[tuple[str, str]]] = {
         ("Shell: web", "scripts.tasks.docker_shell_web"),
     ],
     "Development": [
+        ("Bootstrap project (day 0)", "scripts.tasks.bootstrap_project"),
         ("Install dependencies", "scripts.tasks.install_deps"),
         ("Run all tests", "scripts.tasks.test_all"),
         ("Run all linters", "scripts.tasks.lint_all"),
@@ -40,6 +41,7 @@ CATEGORIES: dict[str, list[tuple[str, str]]] = {
         ("Tests (native)", "scripts.tasks.test_all native"),
         ("Lint (native)", "scripts.tasks.lint_all native"),
         ("Static analysis (native)", "scripts.tasks.static_analysis native"),
+        ("E2E smoke (Playwright)", "scripts.tasks.e2e_smoke"),
     ],
     "Documentation": [
         ("Check doc structure & links", "scripts.tasks.docs_check"),
@@ -49,6 +51,7 @@ CATEGORIES: dict[str, list[tuple[str, str]]] = {
     ],
     "Quality": [
         ("Check orphans & junk", "scripts.tasks.check_orphans"),
+        ("Check doc updates (app code)", "scripts.tasks.check_doc_updates"),
         ("Security check", "scripts.tasks.security_check"),
         ("Validate AGENTS.md", "scripts.tasks.validate_agents"),
         ("Adapter sync check", "scripts.tasks.sync_adapters --check"),

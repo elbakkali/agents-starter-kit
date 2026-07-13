@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from scripts.lib.runner import ROOT, docker_compose, require_docker, run
+from scripts.lib.runner import ROOT, docker_compose, require_docker, run, web_is_kit_stub
 
 
 def _native() -> None:
@@ -15,7 +15,9 @@ def _native() -> None:
         run(["php", "artisan", "test"], cwd=api)
     else:
         print("Skip API tests: no Laravel app in api/")
-    if (web / "package.json").exists():
+    if web_is_kit_stub():
+        print("Skip web tests: package.json is kit stub (run nuxi init).")
+    elif (web / "package.json").exists():
         run(["npm", "run", "test"], cwd=web)
     else:
         print("Skip web tests: no package.json in web/")
@@ -29,7 +31,9 @@ def _docker() -> None:
         print("Skip API tests: artisan not found — scaffold Laravel in api/")
     else:
         print("Skip API tests: no Laravel app in api/")
-    if (ROOT / "web" / "package.json").exists():
+    if web_is_kit_stub():
+        print("Skip web tests: package.json is kit stub (run nuxi init).")
+    elif (ROOT / "web" / "package.json").exists():
         docker_compose("exec", "-T", "web", "npm", "run", "test")
     else:
         print("Skip web tests: no package.json in web/")

@@ -53,6 +53,6 @@ python3 -m scripts.tasks.feature_review
 
 Or devkit → **Quality** → **Post-feature review**.
 
-Includes orphans, lint, tests, static analysis (graceful skip in template mode), security check, docs check, AGENTS.md validation.
+Includes orphans, lint, tests, static analysis (graceful skip in template mode), security check, docs check, AGENTS.md validation, command validation.
 
 Do not mark the task complete if this fails.

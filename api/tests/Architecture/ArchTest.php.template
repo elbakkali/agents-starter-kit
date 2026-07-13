@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+|--------------------------------------------------------------------------
+| Architecture tests (Pest)
+|--------------------------------------------------------------------------
+|
+| Copy to tests/Architecture/ArchTest.php after scaffolding Laravel:
+|   mkdir -p tests/Architecture
+|   cp tests/Architecture/ArchTest.php.template tests/Architecture/ArchTest.php
+|
+| Requires: composer require --dev pestphp/pest pestphp/pest-plugin-laravel
+|           php artisan pest:install
+|
+*/
+
+use Illuminate\Support\Facades\File;
+
+arch('controllers are thin')
+    ->expect('App\Http\Controllers')
+    ->not->toUse(['env']);
+
+arch('env helper only in config')
+    ->expect('App')
+    ->not->toUse('env')
+    ->ignoring('App\Providers');
+
+arch('models extend Eloquent Model')
+    ->expect('App\Models')
+    ->toExtend('Illuminate\Database\Eloquent\Model');
+
+arch('strict types in app code')
+    ->expect('App')
+    ->toUseStrictTypes();

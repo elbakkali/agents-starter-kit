@@ -17,6 +17,7 @@ alwaysApply: true
 2. Read the nearest `AGENTS.md` and relevant scoped rules.
 3. Implement with tests when behavior changes.
 4. **Feature completion** — review, refactor, remove orphans, update docs, run feature review.
+5. **Session handoff** — after multi-file changes, copy [`HANDOFF.md.template`](../docs/technical/HANDOFF.md.template) → `docs/technical/HANDOFF.md` (gitignored).
 
 ## No orphaned code
 
@@ -47,6 +48,9 @@ Deep checklist: [`.cursor/rules/feature-completion.mdc`](feature-completion.mdc)
 - **Technical** (`docs/technical/`) — how the system works; update with infra/API/architecture changes.
 - **Product** (`docs/product/`) — what users see; update with user-facing feature changes.
 - Same PR as the code change — never defer doc updates.
+- When changing `api/`, `web/`, or `app/` behavior, touch at least one relevant doc in the same change.
+- Map: infra/setup → `setup-*.md`; architecture/API → `architecture.md` or `api-contract.md`; user-facing → `features.md` or `user-flows.md`.
+- End of session with multi-file changes: update local `docs/technical/HANDOFF.md` from [`HANDOFF.md.template`](../docs/technical/HANDOFF.md.template).
 
 ## Git safety
 

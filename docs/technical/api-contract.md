@@ -15,6 +15,7 @@ _Describe Sanctum/session/JWT approach after auth is implemented._
 
 ## OpenAPI
 
+- Install during bootstrap: `composer require dedoc/scramble` in `api/` — see [bootstrap.md](bootstrap.md).
 - Generate with [Scramble](https://scramble.dedoc.co/) when Laravel is scaffolded.
 - Dev docs: `/docs/api`
 - Export: commit or CI artifact as team policy dictates.

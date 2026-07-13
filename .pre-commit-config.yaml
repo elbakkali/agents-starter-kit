@@ -1,0 +1,26 @@
+# Optional local hooks — install: pip install pre-commit && pre-commit install
+# See docs/technical/bootstrap.md
+
+repos:
+  - repo: local
+    hooks:
+      - id: docs-check
+        name: Documentation structure
+        entry: python3 -m scripts.tasks.docs_check
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: check-orphans
+        name: Orphan and junk scan
+        entry: python3 -m scripts.tasks.check_orphans
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: sync-adapters-check
+        name: Editor adapter sync check
+        entry: python3 -m scripts.tasks.sync_adapters --check
+        language: system
+        pass_filenames: false
+        always_run: true

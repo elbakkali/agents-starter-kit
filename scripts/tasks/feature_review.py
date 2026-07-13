@@ -13,7 +13,9 @@ TASKS = [
     ("scripts.tasks.static_analysis", ["native"]),
     ("scripts.tasks.security_check", []),
     ("scripts.tasks.docs_check", []),
+    ("scripts.tasks.check_doc_updates", []),
     ("scripts.tasks.validate_agents", []),
+    ("scripts.tasks.validate_agents_commands", []),
 ]
 
 

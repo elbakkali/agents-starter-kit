@@ -25,6 +25,8 @@ docker compose up -d --build
 python3 scripts/devkit.py          # interactive menu (↑↓←→ + Enter)
 ```
 
+**First-time setup:** [`docs/technical/bootstrap.md`](docs/technical/bootstrap.md) or `python3 -m scripts.tasks.bootstrap_project`.
+
 | Task | Command |
 |------|---------|
 | Start stack | `docker compose up -d` or devkit → Docker → Start stack |
@@ -53,7 +55,7 @@ Run `python3 -m scripts.tasks.docs_check` to verify structure and links.
 
 ## Spec and handoff
 
-Non-trivial features: `python3 -m scripts.tasks.scaffold_feature "Feature name"` — see [`.cursor/skills/start-feature/SKILL.md`](.cursor/skills/start-feature/SKILL.md). End of session: copy [`HANDOFF.md.template`](docs/technical/HANDOFF.md.template) → `HANDOFF.md` (gitignored).
+Non-trivial features: `python3 -m scripts.tasks.scaffold_feature "Feature name"` — see [`.cursor/skills/start-feature/SKILL.md`](.cursor/skills/start-feature/SKILL.md). End of session: copy [`HANDOFF.md.template`](docs/technical/HANDOFF.md.template) → `docs/technical/HANDOFF.md` (gitignored; **required** after multi-file changes).
 
 ## Security
 
@@ -68,6 +70,7 @@ Shipped-code obligations: [`docs/technical/security.md`](docs/technical/security
 **Always**
 
 - Docker-first for local dev unless the user asks for native.
+- When `api/`, `web/`, or `app/` behavior changes, update at least one doc in `docs/technical/` or `docs/product/` in the same change.
 - Update technical **and** product docs when the feature warrants it.
 - Remove deprecated code and files in the same PR — never leave orphans.
 - Run post-feature review before marking a task complete.
@@ -95,3 +98,5 @@ Shipped-code obligations: [`docs/technical/security.md`](docs/technical/security
 | Docs / Docker / Testing / Static analysis / API contract | [`.cursor/rules/`](.cursor/rules/) |
 | Laravel / Nuxt / App | [`api/AGENTS.md`](api/AGENTS.md), [`web/AGENTS.md`](web/AGENTS.md), [`app/AGENTS.md`](app/AGENTS.md) |
 | Multi-editor adapters | [`docs/technical/agent-adapters.md`](docs/technical/agent-adapters.md) |
+| Bootstrap (day 0) | [`docs/technical/bootstrap.md`](docs/technical/bootstrap.md) |
+| License | [`LICENSE`](LICENSE) |

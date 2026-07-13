@@ -9,11 +9,18 @@ parameters:
         - vendor
         - storage
         - bootstrap/cache
+        - tests/Architecture/ArchTest.php.template
 
 includes:
     - vendor/larastan/larastan/extension.neon
 
-# Copy to phpstan.neon after scaffolding Laravel and installing larastan:
+# Larastan-ready stub — active after Laravel scaffold:
+#
+#   composer require --dev larastan/larastan
 #   cp phpstan.neon.dist phpstan.neon
 #
-# Run: ./vendor/bin/phpstan analyse --configuration=phpstan.neon.dist
+# Architecture tests (optional):
+#   cp tests/Architecture/ArchTest.php.template tests/Architecture/ArchTest.php
+#
+# Run (native): ./vendor/bin/phpstan analyse --configuration=phpstan.neon.dist
+# Run (devkit): python3 -m scripts.tasks.static_analysis

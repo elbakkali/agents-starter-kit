@@ -2,6 +2,8 @@
 
 Complete guide to run this project on your machine. Update this file when Docker, env vars, or bootstrap steps change.
 
+> **First clone?** Start with [bootstrap.md](bootstrap.md) for scaffold + env alignment, then return here for daily workflow.
+
 ## Prerequisites
 
 - Docker Desktop or Docker Engine + Compose v2
@@ -24,7 +26,13 @@ cp .env.docker.example .env
 
 ## 2. Scaffold applications (first time only)
 
-If `api/` and `web/` are empty stubs, create the Laravel and Nuxt apps first:
+If `api/` and `web/` are empty stubs, use the bootstrap script or see [bootstrap.md](bootstrap.md):
+
+```bash
+python3 -m scripts.tasks.bootstrap_project
+```
+
+Manual scaffold:
 
 ```bash
 # Laravel in api/
@@ -34,7 +42,7 @@ composer create-project laravel/laravel api
 npx nuxi@latest init web
 ```
 
-Then align `.env` files inside each package with Docker service names (`DB_HOST=postgres`, etc.).
+Then align `.env` files using `api/.env.example.template` and `web/.env.example.template` (Docker service names: `DB_HOST=postgres`, etc.).
 
 ## 3. Start with Docker (recommended)
 

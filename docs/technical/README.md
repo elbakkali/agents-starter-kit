@@ -6,6 +6,7 @@ Engineering docs for developers and AI agents. Keep these **up to date** with ev
 
 | Document | Purpose | Update when |
 |----------|---------|-------------|
+| [bootstrap.md](bootstrap.md) | Day-0 clone → scaffold → first green feature_review | Bootstrap script, env templates, scaffold flow |
 | [setup-local.md](setup-local.md) | Run the project locally (Docker + native) | Tooling, env vars, or service topology changes |
 | [setup-production.md](setup-production.md) | Deploy from scratch to production | Infra, CI/CD, or runtime config changes |
 | [architecture.md](architecture.md) | System design, data flow, modules | Boundaries, auth, or integration changes |
@@ -14,6 +15,8 @@ Engineering docs for developers and AI agents. Keep these **up to date** with ev
 | [agent-adapters.md](agent-adapters.md) | Multi-editor rule sync and token budget | Adapter files, editor compatibility, or sync workflow changes |
 | [decisions/](decisions/) | Architecture Decision Records | Significant technical choices |
 | [mcp-setup.md](mcp-setup.md) | Optional MCP servers for agents | MCP tooling changes |
+| [e2e.md](e2e.md) | Playwright E2E smoke tests | E2E config or CI changes |
+| [architecture.example.md](architecture.example.md) | Fictional reference architecture | Example-only (Acme Billing) |
 | [tech-debt.md](tech-debt.md) | Known debt and cleanup targets | Debt added or resolved |
 
 ## Rules for agents

@@ -10,6 +10,7 @@ from scripts.lib.runner import ROOT
 
 REQUIRED = [
     "docs/technical/README.md",
+    "docs/technical/bootstrap.md",
     "docs/technical/setup-local.md",
     "docs/technical/setup-production.md",
     "docs/technical/architecture.md",
