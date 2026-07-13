@@ -1,0 +1,3 @@
+# Windsurf — pointer to cross-tool instructions
+# Primary: AGENTS.md (also read by Windsurf natively)
+# Scoped rules: .github/instructions/ or .claude/rules/ (synced from .cursor/rules/)

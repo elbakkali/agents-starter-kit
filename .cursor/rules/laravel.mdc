@@ -1,0 +1,40 @@
+---
+description: Laravel backend conventions for api/ PHP files
+globs: api/**/*.php
+alwaysApply: false
+---
+
+# Laravel conventions
+
+## Structure
+
+- Controllers: route handling only — delegate to Actions or Services.
+- Form Requests for validation; Policies for authorization.
+- Eloquent models in `app/Models/`; avoid fat models — extract complex logic.
+
+## Patterns
+
+```php
+// ❌ BAD — validation and logic in controller
+public function store(Request $request) {
+    $request->validate(['email' => 'required|email']);
+    User::create($request->only('email'));
+}
+
+// ✅ GOOD — Form Request + Action
+public function store(StoreUserRequest $request, CreateUserAction $action) {
+    return UserResource::make($action->execute($request->validated()));
+}
+```
+
+## Database
+
+- Eager-load relationships to prevent N+1 (`User::with('posts')->get()`).
+- Migrations must be reversible when feasible.
+- Use factories in tests; never seed production data from tests.
+
+## Do not
+
+- Call `env()` outside `config/` files.
+- Put business logic in Blade views (API-only projects: no Blade business logic).
+- Use raw SQL when Eloquent covers the case.

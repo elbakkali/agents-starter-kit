@@ -1,0 +1,40 @@
+# Session handoff (local only — do not commit)
+
+Copy this file to `HANDOFF.md` (gitignored) at end of session.
+
+## Branch / PR
+
+- Branch:
+- PR:
+- Related spec: `docs/product/specs/…`
+
+## Done this session
+
+-
+
+## In progress
+
+-
+
+## Next steps
+
+1.
+2.
+
+## Commands / env
+
+```bash
+# e.g. docker compose up -d, migrations, feature flags
+```
+
+## Blockers / questions
+
+-
+
+## Docs touched
+
+- [ ] `docs/technical/…`
+- [ ] `docs/product/…`
+- [ ] ADR if architectural decision made
+
+Run before handoff: `python3 -m scripts.tasks.feature_review`

@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kit:
+    name: Agent kit validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Documentation structure
+        run: python3 -m scripts.tasks.docs_check
+
+      - name: Orphan scan
+        run: python3 -m scripts.tasks.check_orphans
+
+      - name: Adapter sync check
+        run: python3 -m scripts.tasks.sync_adapters --check
+
+      - name: AGENTS.md validation
+        run: python3 -m scripts.tasks.validate_agents
+
+  security:
+    name: Security check
+    runs-on: ubuntu-latest
+    needs: kit
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - uses: shivammathur/setup-php@v2
+        if: hashFiles('api/composer.json') != ''
+        with:
+          php-version: "8.2"
+          tools: composer
+
+      - uses: actions/setup-node@v4
+        if: hashFiles('web/package.json') != ''
+        with:
+          node-version: "20"
+
+      - name: Install web dependencies
+        if: hashFiles('web/package.json') != ''
+        working-directory: web
+        run: npm ci
+
+      - name: Shipped code security
+        run: python3 -m scripts.tasks.security_check
+
+  quality:
+    name: Lint, test, static analysis
+    runs-on: ubuntu-latest
+    needs: kit
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Lint (template-aware, native)
+        run: python3 -m scripts.tasks.lint_all native
+
+      - name: Test (template-aware, native)
+        run: python3 -m scripts.tasks.test_all native
+
+      - name: Static analysis (template-aware)
+        run: python3 -m scripts.tasks.static_analysis native
+
+  docker-quality:
+    name: Lint and test (Docker)
+    runs-on: ubuntu-latest
+    needs: kit
+    if: hashFiles('api/composer.json', 'web/package.json') != ''
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start stack
+        run: |
+          cp .env.docker.example .env
+          docker compose up -d --build
+
+      - name: Install API dependencies
+        if: hashFiles('api/composer.json') != ''
+        run: docker compose exec -T api composer install --no-interaction
+
+      - name: Install web dependencies
+        if: hashFiles('web/package.json') != ''
+        run: docker compose exec -T web npm ci
+
+      - name: Lint (Docker)
+        run: python3 -m scripts.tasks.lint_all docker
+
+      - name: Test (Docker)
+        run: python3 -m scripts.tasks.test_all docker
+
+      - name: Static analysis (Docker)
+        run: python3 -m scripts.tasks.static_analysis docker
+
+      - name: Stop stack
+        if: always()
+        run: docker compose down -v

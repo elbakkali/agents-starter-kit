@@ -1,0 +1,57 @@
+---
+description: Post-feature review, refactor, and cleanup obligations
+alwaysApply: false
+globs: api/**,web/**,app/**,scripts/**
+---
+
+# Feature completion
+
+A feature is **not done** until this checklist passes:
+
+## 1. Review and refactor
+
+- Re-read every file you touched with fresh eyes.
+- Simplify sloppy or duplicated logic introduced during implementation.
+- Extract shared code only when duplication already exists (no over-abstraction).
+- Ensure naming matches project conventions.
+
+## 2. Remove orphans
+
+- Delete obsolete files, components, routes, migrations superseded by yours.
+- Remove unused imports, variables, and commented-out code.
+- Drop empty directories.
+- Confirm no references remain to deleted symbols (`grep` / search).
+
+## 3. Tests, lint, and static analysis
+
+- All relevant tests pass.
+- Linters pass for touched packages.
+- Static analysis when tools exist: `python3 -m scripts.tasks.static_analysis`
+
+## 4. Security (shipped code)
+
+- New/changed endpoints: auth + authorization + input validation present.
+- No secrets, tokens, or credentials in the diff.
+- No user-controlled data in raw queries, shell, or file paths.
+- Security tests for auth boundaries (401/403) on new protected routes.
+- Run `python3 -m scripts.tasks.security_check` (also in feature review).
+
+## 5. Documentation
+
+- Technical docs if architecture, setup, or APIs changed.
+- Product docs if user-visible behavior changed.
+- `docs/technical/tech-debt.md` if debt was added or resolved.
+
+## 6. Final gate
+
+Run:
+
+```bash
+python3 -m scripts.tasks.feature_review
+```
+
+Or devkit → **Quality** → **Post-feature review**.
+
+Includes orphans, lint, tests, static analysis (graceful skip in template mode), security check, docs check, AGENTS.md validation.
+
+Do not mark the task complete if this fails.

@@ -1,0 +1,52 @@
+name: Feature
+description: New feature or enhancement
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Prefer spec-before-code: run `python3 -m scripts.tasks.scaffold_feature "Name"` first.
+
+  - type: input
+    id: spec
+    attributes:
+      label: Spec path
+      description: Link to approved spec in docs/product/specs/
+      placeholder: docs/product/specs/my-feature.md
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user or business problem does this solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Testable checklist
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: packages
+    attributes:
+      label: Affected packages
+      options:
+        - label: api/
+        - label: web/
+        - label: app/
+        - label: docs/
+        - label: scripts / agent kit
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Links, mocks, ADRs

@@ -1,0 +1,32 @@
+<!-- AUTO-GENERATED from .cursor/rules/docker.mdc — edit the .mdc source and run: python3 -m scripts.tasks.sync_adapters -->
+
+---
+paths: docker/**/*, docker-compose*.yml, **/Dockerfile, .env.docker.example
+---
+
+# Docker conventions
+
+## Layout
+
+- `docker-compose.yml` — local development stack.
+- `docker-compose.prod.yml` — production overlay (`-f docker-compose.yml -f docker-compose.prod.yml`).
+- `docker/nginx/`, `docker/php/` or `api/docker/` — service config, not app logic.
+- `.env.docker.example` — committed template; `.env` is gitignored.
+
+## Workflow
+
+- Prefer Docker for local dev: `docker compose up -d --build`.
+- Use `python3 scripts/devkit.py` for common Docker operations.
+- Exec into containers for one-off artisan/npm commands — do not install deps on the host unless using native mode.
+
+## When changing Docker
+
+- Update `docs/technical/setup-local.md` and `setup-production.md` in the same PR.
+- Keep dev and prod targets in Dockerfiles (`dev` / `prod` stages).
+- New service → add to compose, document ports in setup-local.md, add devkit task if repeated.
+
+## Do not
+
+- Commit production secrets in compose files — use env vars.
+- Remove healthchecks from database/redis without reason.
+- Bind-mount secrets into images.

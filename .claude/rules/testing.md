@@ -1,0 +1,40 @@
+<!-- AUTO-GENERATED from .cursor/rules/testing.mdc — edit the .mdc source and run: python3 -m scripts.tasks.sync_adapters -->
+
+---
+paths: api/**/*Test.php, api/tests/**/*.php, web/**/*.spec.ts, web/**/*.test.ts, web/**/__tests__/**
+---
+
+# Testing standards
+
+## When to write tests
+
+- New feature or endpoint → feature/integration test.
+- Bug fix → regression test reproducing the bug.
+- Refactor → existing tests must pass; add tests only if coverage was missing.
+
+## Backend (Pest / PHPUnit)
+
+```php
+// ✅ GOOD — tests behavior, uses factories
+it('creates a user with valid email', function () {
+    $response = $this->postJson('/api/users', ['email' => 'a@b.com']);
+    $response->assertCreated();
+    expect(User::count())->toBe(1);
+});
+```
+
+- Use descriptive test names (`it('rejects duplicate email')`).
+- One logical assertion focus per test when possible.
+- Mock external services; use real DB with `RefreshDatabase` for integration.
+
+## Frontend (Vitest)
+
+- Test rendered output and user interactions, not private methods.
+- Mock API at the composable or `useFetch` layer.
+- Avoid snapshot tests unless the project already uses them consistently.
+
+## Do not
+
+- Assert trivial truths (`expect(true).toBe(true)`).
+- Skip tests to greenwash a broken implementation.
+- Test framework internals instead of your code's behavior.

@@ -1,0 +1,44 @@
+<!-- AUTO-GENERATED from .cursor/rules/documentation.mdc — edit the .mdc source and run: python3 -m scripts.tasks.sync_adapters -->
+
+---
+description: "Documentation standards — technical vs product, always up to date"
+applyTo: "docs/**/*.md"
+---
+
+# Documentation standards
+
+## Two categories
+
+| Category | Path | Content |
+|----------|------|---------|
+| **Technical** | `docs/technical/` | Setup (local + prod), architecture, APIs, infra, tech debt |
+| **Product** | `docs/product/` | Overview, features, user flows — no code unless user-facing copy |
+
+Do not mix: API endpoints belong in technical; user journeys belong in product.
+
+## When to update (same PR as code)
+
+| Change type | Update |
+|-------------|--------|
+| New env var, Docker service, setup step | `setup-local.md`, maybe `setup-production.md` |
+| Module boundary, auth, data flow | `architecture.md` |
+| User-visible feature | `features.md`, maybe `user-flows.md` |
+| Vision or positioning | `overview.md` |
+| Known debt | `tech-debt.md` |
+| API contract / OpenAPI | `api-contract.md` |
+| ADR | `decisions/` (new ADR per significant choice) |
+| Session handoff | `HANDOFF.md.template` → local `HANDOFF.md` (gitignored) |
+| MCP (optional) | `mcp-setup.md` |
+
+## Quality rules
+
+- Keep setup guides runnable from scratch — copy-paste commands that work.
+- Remove docs for deleted features in the same PR.
+- Link between docs; avoid duplicating content across files.
+- Run `python3 -m scripts.tasks.docs_check` before finishing doc changes.
+
+## Do not
+
+- Leave "TODO: document later" placeholders in shipped docs.
+- Put secrets or real credentials in documentation.
+- Duplicate long architecture sections in AGENTS.md — link instead.

@@ -1,0 +1,46 @@
+# Environment (keep tracked examples)
+.env
+!.env.docker.example
+!.env.example
+
+# Local handoff (from template)
+docs/technical/HANDOFF.md
+HANDOFF.md
+
+# Dependencies
+node_modules/
+vendor/
+
+# Cursor — commit rules, hooks, skills; ignore local cache
+.cursor/cache/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor backups
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Laravel
+**/storage/logs/
+**/storage/framework/cache/
+**/bootstrap/cache/*.php
+
+# Nuxt
+.output/
+.nuxt/
+dist/
+
+# Flutter
+.dart_tool/
+build/

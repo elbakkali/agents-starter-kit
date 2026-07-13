@@ -1,0 +1,19 @@
+parameters:
+    level: 5
+    paths:
+        - app
+        - config
+        - database
+        - routes
+    excludePaths:
+        - vendor
+        - storage
+        - bootstrap/cache
+
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+# Copy to phpstan.neon after scaffolding Laravel and installing larastan:
+#   cp phpstan.neon.dist phpstan.neon
+#
+# Run: ./vendor/bin/phpstan analyse --configuration=phpstan.neon.dist

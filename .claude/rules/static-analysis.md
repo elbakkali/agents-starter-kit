@@ -1,0 +1,35 @@
+<!-- AUTO-GENERATED from .cursor/rules/static-analysis.mdc — edit the .mdc source and run: python3 -m scripts.tasks.sync_adapters -->
+
+---
+paths: api/**/*.php, web/**/*.{ts, vue}
+---
+
+# Static analysis
+
+Run before marking a feature done (included in `feature_review`):
+
+```bash
+python3 -m scripts.tasks.static_analysis
+```
+
+## PHP (api/)
+
+- Use **PHPStan** + **Larastan** with config from `api/phpstan.neon.dist`.
+- Copy to `phpstan.neon` and tune levels after scaffolding Laravel.
+- Fix new errors in touched code; do not blanket-baseline without ADR.
+
+## TypeScript (web/)
+
+- Enable strict mode in `tsconfig.json` (see `web/tsconfig.strict-notes.md`).
+- Run `vue-tsc --noEmit` or `npm run typecheck` before PR.
+- No `any` in new code unless documented in spec.
+
+## Architecture tests (api/)
+
+- Place Pest architecture tests in `api/tests/Architecture/`.
+- Enforce layer boundaries (controllers → actions, no env() outside config).
+- Add rules as the codebase grows — start with namespace/folder conventions.
+
+## Template mode
+
+If `composer.json` / `package.json` are missing, static analysis skips gracefully.
