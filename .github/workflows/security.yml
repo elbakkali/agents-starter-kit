@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # Blocking on PRs: new/changed dependencies with known vulnerabilities fail the build.
-      - uses: actions/dependency-review-action@v4
+      - uses: actions/dependency-review-action@v5
 
   shipped-code-security:
     name: Shipped code security
